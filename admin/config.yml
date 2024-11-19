@@ -2,8 +2,9 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "raw_img/uploads"
-public_folder: "/uploads"
+# Update paths to use the existing public/img folder
+media_folder: "public/img/uploads"    # Physical location in the repo
+public_folder: "/img/uploads"         # URL path in the CMS and posts
 
 collections:
   - name: "blog"
