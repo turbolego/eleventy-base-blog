@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="no">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Content Manager</title>
+	<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+<script>
+	// Check if we have a hash with an access token
+	if (window.location.hash && window.location.hash.includes('access_token')) {
+		// Store the token
+		const token = window.location.hash.split('=')[1];
+		window.localStorage.setItem('netlify-cms-user', token);
+		// Remove the token from the URL
+		history.replaceState(null, '', window.location.pathname);
+	}
+</script>
+<script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+</body>
+</html>
