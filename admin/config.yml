@@ -1,28 +1,19 @@
 backend:
   name: git-gateway
   branch: main
-  auth_endpoint: auth # This is the default value, can be omitted
-  commit_messages:
-    create: 'Create {{collection}} "{{slug}}"'
-    update: 'Update {{collection}} "{{slug}}"'
-    delete: 'Delete {{collection}} "{{slug}}"'
-    uploadMedia: '[skip ci] Upload "{{path}}"'
-    deleteMedia: '[skip ci] Delete "{{path}}"'
-
-# These lines help with the GitHub authentication flow
-local_backend: true # Optional: Enables local backend development
-publish_mode: editorial_workflow # Optional: Adds editorial workflow
 
 media_folder: "raw_img/uploads"
+public_folder: "/uploads"
+
 collections:
-  - name: "blog" # Used in routes, e.g., /admin/collections/blog
-    label: "Blog" # Used in the UI
-    folder: "content/blog" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime", time_format: false, date_format: "YYYY-MM-DD", format: "YYYY-MM-DD"}
-      - {label: "tags", name: "tags", widget: "list", default: ["posts"]}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Tags", name: "tags", widget: "list", default: ["posts"]}
       - {label: "Body", name: "body", widget: "markdown"}
