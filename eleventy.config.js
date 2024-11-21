@@ -121,6 +121,13 @@ export default async function (eleventyConfig) {
 
 	// Optional: Add admin folder to watch targets
 	eleventyConfig.addWatchTarget("admin/**/*");
+
+	eleventyConfig.addTransform("fixImagePaths", function (content, outputPath) {
+		if (outputPath && outputPath.endsWith(".html")) {
+			return content.replace(/src="\/img\/uploads\//g, 'src="/img/uploads/');
+		}
+		return content;
+	});	
 };
 
 export const config = {
