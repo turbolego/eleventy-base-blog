@@ -35,7 +35,10 @@ jobs:
         with:
           path: ./.cache
           key: ${{ runner.os }}-eleventy-fetch-cache
-
+      
+      - name: List files in _site/img/uploads
+        run: ls -la _site/img/uploads
+        
 
       - run: npm install
       - run: npm run build-ghpages
