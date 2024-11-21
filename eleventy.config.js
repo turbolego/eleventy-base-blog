@@ -83,6 +83,7 @@ export default async function (eleventyConfig) {
 
 	// Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
 	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+		base: "public", // Adjust base path to the root of your repository
 		// File extensions to process in _site folder
 		extensions: "html",
 
